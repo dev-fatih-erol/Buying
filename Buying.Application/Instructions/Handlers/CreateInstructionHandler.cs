@@ -1,9 +1,11 @@
 ﻿using Buying.Application.Common.Accessors;
 using Buying.Application.Common.Exceptions;
 using Buying.Application.Instructions.Commands;
+using Buying.Application.Instructions.Events;
 using Buying.Infrastructure.Domain.Entities;
 using Buying.Infrastructure.Domain.Enums;
 using Buying.Infrastructure.Persistence;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -14,14 +16,17 @@ namespace Buying.Application.Instructions.Handlers
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IUserAccessor _userAccessor;
+        private readonly IPublishEndpoint _publishEndpoint;
         private readonly ILogger<CreateInstructionHandler> _logger;
 
         public CreateInstructionHandler(ApplicationDbContext dbContext,
             IUserAccessor userAccessor,
+            IPublishEndpoint publishEndpoint,
             ILogger<CreateInstructionHandler> logger)
 		{
             _dbContext = dbContext;
             _userAccessor = userAccessor;
+            _publishEndpoint = publishEndpoint;
             _logger = logger;
         }
 
@@ -53,6 +58,11 @@ namespace Buying.Application.Instructions.Handlers
 
             await _dbContext.Instructions.AddAsync(instruction, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            await _publishEndpoint.Publish<InstructionCreatedEvent>(new
+            {
+                instruction.Id,
+            }, cancellationToken);
 
             _logger.LogInformation($"Instruction created successfully. Id:{instruction.Id}");
 
