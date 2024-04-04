@@ -1,5 +1,6 @@
 ﻿using Buying.Application.Common.Accessors;
 using Buying.Application.Common.Exceptions;
+using Buying.Application.Common.Extensions;
 using Buying.Application.Instructions.Commands;
 using Buying.Application.Instructions.Events;
 using Buying.Infrastructure.Domain.Entities;
@@ -16,17 +17,17 @@ namespace Buying.Application.Instructions.Handlers
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IUserAccessor _userAccessor;
-        private readonly IPublishEndpoint _publishEndpoint;
+        private readonly IMessageScheduler _messageScheduler;
         private readonly ILogger<CreateInstructionHandler> _logger;
 
         public CreateInstructionHandler(ApplicationDbContext dbContext,
             IUserAccessor userAccessor,
-            IPublishEndpoint publishEndpoint,
+            IMessageScheduler messageScheduler,
             ILogger<CreateInstructionHandler> logger)
 		{
             _dbContext = dbContext;
             _userAccessor = userAccessor;
-            _publishEndpoint = publishEndpoint;
+            _messageScheduler = messageScheduler;
             _logger = logger;
         }
 
@@ -59,10 +60,15 @@ namespace Buying.Application.Instructions.Handlers
             await _dbContext.Instructions.AddAsync(instruction, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            await _publishEndpoint.Publish<InstructionCreatedEvent>(new
-            {
-                instruction.Id,
-            }, cancellationToken);
+            var now = instruction.ExecutionDay.ToExecutionDate();
+            await _messageScheduler.SchedulePublish<InstructionCreatedEvent>(DateTime.UtcNow + TimeSpan.FromSeconds(30), new
+                {
+                    instruction.Id,
+                    instruction.Amount,
+                    instruction.ExecutionDay,
+                    channelIds = channels.Select(c => c.Id).ToArray(),
+                    instruction.UserId
+                }, cancellationToken);;
 
             _logger.LogInformation($"Instruction created successfully. Id:{instruction.Id}");
 

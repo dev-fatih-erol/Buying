@@ -31,6 +31,8 @@ namespace Buying.Application.Common.Extensions
 
             services.AddMassTransit(options =>
             {
+                options.AddDelayedMessageScheduler();
+
                 options.AddConsumer<InstructionCreatedConsumer>();
 
                 options.UsingRabbitMq((context, config) =>
@@ -45,6 +47,8 @@ namespace Buying.Application.Common.Extensions
                     {
                         options.ConfigureConsumer<InstructionCreatedConsumer>(context);
                     });
+
+                    config.UseDelayedMessageScheduler();
 
                     config.ConfigureEndpoints(context);
                 });
