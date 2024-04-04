@@ -66,9 +66,9 @@ namespace Buying.Application.Instructions.Handlers
                     instruction.Id,
                     instruction.Amount,
                     instruction.ExecutionDay,
-                    channelIds = channels.Select(c => c.Id).ToArray(),
+                    channels = channels.Select(c => c.Type).ToArray(),
                     instruction.UserId
-                }, cancellationToken);;
+                }, cancellationToken);
 
             _logger.LogInformation($"Instruction created successfully. Id:{instruction.Id}");
 

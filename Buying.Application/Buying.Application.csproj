@@ -20,9 +20,13 @@
   <ItemGroup>
     <None Remove="Instructions\Events\" />
     <None Remove="Instructions\Consumers\" />
+    <None Remove="Common\Constants\" />
+    <None Remove="Instructions\Notifications\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Instructions\Events\" />
     <Folder Include="Instructions\Consumers\" />
+    <Folder Include="Common\Constants\" />
+    <Folder Include="Instructions\Notifications\" />
   </ItemGroup>
 </Project>

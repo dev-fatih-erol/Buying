@@ -8,7 +8,7 @@
 
         public int ExecutionDay { get; set; }
 
-        public int[] ChannelIds { get; set; }
+        public string[] Channels { get; set; }
 
         public int UserId { get; set; }
     }
