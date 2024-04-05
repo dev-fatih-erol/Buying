@@ -13,7 +13,6 @@ This microservice is designed to manage and process users' gold purchase request
 ### Usage
 This is the view of the microservice from above
 ![1](https://github.com/dev-fatih-erol/Buying/assets/50841052/5132b8ce-94ec-4685-b634-30de405edd49)
-
 #### The 5 main tasks of microservice are:
 
 - Create instruction<br />
@@ -30,4 +29,5 @@ This is the view of the microservice from above
 #### The instruction creation process includes the following elements
 
 When creating instructions, the user selects the amount to be received, the instruction day, and the notification channels. At the same time, when the instruction is added to the database, the delivery date of the message is calculated and sent to RabbitMQ as a **Delayed Message**.
-When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued. This cycle continues until the user cancels the instruction.
+When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued. This cycle continues until the user cancels the instruction. Please refer to the image for a more detailed examination.
+![2](https://github.com/dev-fatih-erol/Buying/assets/50841052/27cdb01c-d7d0-43d6-9bf5-8f08b842b3d7)
