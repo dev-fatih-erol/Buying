@@ -9,3 +9,7 @@ This microservice is designed to manage and process users' gold purchase request
 - PostgreSQL: An open-source and powerful relational database management system.
 - RabbitMQ: Middleware used for message queues and event-based communication.
 - CQRS: An architectural approach that separates command and query responsibilities.
+
+### Usage
+This is the view of the microservice from above
+![1](https://github.com/dev-fatih-erol/Buying/assets/50841052/5132b8ce-94ec-4685-b634-30de405edd49)
