@@ -60,8 +60,7 @@ namespace Buying.Application.Instructions.Handlers
             await _dbContext.Instructions.AddAsync(instruction, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            var now = instruction.ExecutionDay.ToExecutionDate();
-            await _messageScheduler.SchedulePublish<InstructionCreatedEvent>(DateTime.UtcNow + TimeSpan.FromSeconds(30), new
+            await _messageScheduler.SchedulePublish<InstructionCreatedEvent>(instruction.ExecutionDay.ToExecutionDate(), new
                 {
                     instruction.Id,
                     instruction.Amount,

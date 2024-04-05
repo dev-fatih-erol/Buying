@@ -53,8 +53,7 @@ namespace Buying.Application.Instructions.Handlers
                 }
             }
 
-            var now = request.ExecutionDay.ToExecutionDate();
-            await _messageScheduler.SchedulePublish<InstructionCreatedEvent>(DateTime.UtcNow + TimeSpan.FromSeconds(30), new
+            await _messageScheduler.SchedulePublish<InstructionCreatedEvent>(request.ExecutionDay.ToExecutionDate(), new
             {
                 request.Id,
                 request.Amount,
