@@ -35,4 +35,5 @@ Please refer to the image for a more detailed examination.
 
 ### Deploy and Scale
 
-**Adjusting Queue and Consumer Counts:** You can scale the queue and consumer counts according to your needs. For instance, during high traffic periods, you can balance the workload by creating more queues and consumers.
+- Load Balancing and Queue Scaling
+- Adjusting Queue and Consumer Counts
