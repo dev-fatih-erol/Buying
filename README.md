@@ -32,3 +32,7 @@ When creating instructions, the user selects the amount to be received, the inst
 When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued. This cycle continues until the user cancels the instruction. In RabbitMQ, in case of message processing failure, the **Retry Policy** comes into play to ensure that messages are resent. Additionally, when a user cancels an instruction, the message is removed from the queue and the current status is recorded in the database.<br /><br />
 Please refer to the image for a more detailed examination.
 ![2](https://github.com/dev-fatih-erol/Buying/assets/50841052/27cdb01c-d7d0-43d6-9bf5-8f08b842b3d7)
+
+### Deploy and Scale
+
+**Queue Scaling and Distribution:** Utilizing message queues, you can distribute delayed messages across various queues, and then distribute these queues across different RabbitMQ nodes or handlers, effectively balancing the workload. This not only enhances performance by distributing the load but also balances the workload within the system.
