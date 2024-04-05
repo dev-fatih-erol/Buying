@@ -28,3 +28,5 @@ This is the view of the microservice from above
   &nbsp;&nbsp;&nbsp;get /instructions/instructioId/channels
 
 #### The instruction creation process includes the following elements
+
+When creating instructions, the user selects the amount to be received, the instruction day, and the notification channels. Instruction are also sent to RabbitMQ as a **Delayed message** while being added to the database.
