@@ -37,3 +37,10 @@ Please refer to the image for a more detailed examination.
 
 - Load Balancing and Queue Scaling
 - Adjusting Queue and Consumer Counts
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
