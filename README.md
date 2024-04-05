@@ -17,7 +17,7 @@ This is the view of the microservice from above
 The 5 main tasks of microservice are:
 
 - Create instruction<br />
-    post /instructions
+  &nbsp;&nbsp;post /instructions
   
 - Cancel instruction<br />
-    put /instructions/cancel
+  &nbsp;&nbsp;put /instructions/cancel
