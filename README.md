@@ -14,7 +14,7 @@ This microservice is designed to manage and process users' gold purchase request
 This is the view of the microservice from above
 ![1](https://github.com/dev-fatih-erol/Buying/assets/50841052/5132b8ce-94ec-4685-b634-30de405edd49)
 
-The 5 main tasks of microservice are:
+##The 5 main tasks of microservice are:
 
 - Create instruction<br />
   &nbsp;&nbsp;&nbsp;post /instructions
@@ -26,3 +26,6 @@ The 5 main tasks of microservice are:
   &nbsp;&nbsp;&nbsp;get /instructions/cancelled
 - List notification channels for an instruction<br />
   &nbsp;&nbsp;&nbsp;get /instructions/instructioId/channels
+
+
+  ##The instruction creation process includes the following elements
