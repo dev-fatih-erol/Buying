@@ -30,4 +30,4 @@ This is the view of the microservice from above
 #### The instruction creation process includes the following elements
 
 When creating instructions, the user selects the amount to be received, the instruction day, and the notification channels. At the same time, when the instruction is added to the database, the delivery date of the message is calculated and sent to RabbitMQ as a **Delayed Message**.
-When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued.
+When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued. This cycle continues until the user cancels the instruction.
