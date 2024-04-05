@@ -13,3 +13,11 @@ This microservice is designed to manage and process users' gold purchase request
 ### Usage
 This is the view of the microservice from above
 ![1](https://github.com/dev-fatih-erol/Buying/assets/50841052/5132b8ce-94ec-4685-b634-30de405edd49)
+
+The 5 main tasks of microservice are:
+
+- Create instruction
+    post /instructions
+  
+- Cancel instruction
+    put /instructions/cancel
