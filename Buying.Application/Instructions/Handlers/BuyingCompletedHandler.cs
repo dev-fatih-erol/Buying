@@ -2,7 +2,6 @@
 using Buying.Application.Instructions.Notifications;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Buying.Application.Instructions.Handlers
 {
