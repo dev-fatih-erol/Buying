@@ -29,6 +29,6 @@ This is the view of the microservice from above
 #### The instruction process includes the following elements:
 
 When creating instructions, the user selects the amount to be received, the instruction day, and the notification channels. At the same time, when the instruction is added to the database, the delivery date of the message is calculated and sent to RabbitMQ as a **Delayed Message**.
-When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued. This cycle continues until the user cancels the instruction. Additionally, when a user cancels an instruction, the message is removed from the queue and the current status is recorded in the database.<br /><br />
+When the message is consumed from RabbitMQ, the purchase transaction occurs, and notifications are sent to the channels selected by the user. Subsequently, the next delivery date is calculated and requeued. This cycle continues until the user cancels the instruction. In RabbitMQ, in case of message processing failure, the Retry Policy comes into play to ensure that messages are resent. Additionally, when a user cancels an instruction, the message is removed from the queue and the current status is recorded in the database.<br /><br />
 Please refer to the image for a more detailed examination.
 ![2](https://github.com/dev-fatih-erol/Buying/assets/50841052/27cdb01c-d7d0-43d6-9bf5-8f08b842b3d7)
