@@ -42,5 +42,5 @@ Please refer to the image for a more detailed examination.
 <br />
 <br />
 <br />
-<br />
-<br />
+
+## Thank you for reading.
