@@ -35,4 +35,4 @@ Please refer to the image for a more detailed examination.
 
 ### Deploy and Scale
 
-**Queue Scaling and Distribution:** Utilizing message queues, you can distribute delayed messages across various queues, and then distribute these queues across different RabbitMQ nodes or handlers, effectively balancing the workload. This not only enhances performance by distributing the load but also balances the workload within the system.
+**Adjusting Queue and Consumer Counts:** You can scale the queue and consumer counts according to your needs. For instance, during high traffic periods, you can balance the workload by creating more queues and consumers.
