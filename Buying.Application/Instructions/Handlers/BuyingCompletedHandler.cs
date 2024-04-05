@@ -1,5 +1,8 @@
-﻿using Buying.Application.Instructions.Notifications;
+﻿using Buying.Application.Common.Constants;
+using Buying.Application.Instructions.Notifications;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Buying.Application.Instructions.Handlers
 {
@@ -8,6 +11,13 @@ namespace Buying.Application.Instructions.Handlers
                                           INotificationHandler<SendPushNotification>
  
     {
+        private readonly ILogger<BuyingCompletedHandler> _logger;
+
+        public BuyingCompletedHandler(ILogger<BuyingCompletedHandler> logger)
+        {
+            _logger = logger;
+        }
+
         public async Task Handle(SendSmsNotification notification, CancellationToken cancellationToken)
         {
             var phoneNumber = notification.PhoneNumber;
@@ -17,6 +27,8 @@ namespace Buying.Application.Instructions.Handlers
             /// Please add the necessary code for sending SMS here. ///
             ///// SAMPLE CODE /////
             ////// _smsSender.Send(phoneNumber, text); //////
+
+            _logger.LogInformation($"Instruction Id: {notification.Id}, Channel: {Channels.SMS}, CreatedAt: {DateTime.UtcNow}, Text: {text}");
 
             await Task.Delay(1000, cancellationToken);
         }
@@ -31,6 +43,8 @@ namespace Buying.Application.Instructions.Handlers
             ///// SAMPLE CODE /////
             ////// _emailSender.Send(email, body); //////
 
+            _logger.LogInformation($"Instruction Id: {notification.Id}, Channel: {Channels.Email}, CreatedAt: {DateTime.UtcNow}, Body: {body}");
+
             await Task.Delay(1000, cancellationToken);
         }
 
@@ -43,7 +57,9 @@ namespace Buying.Application.Instructions.Handlers
             /// Please add the necessary code for sending Push Notification here. ///
             ///// SAMPLE CODE /////
             ////// _pushNotificationSender.Send(deviceToken, text); //////
-            
+
+            _logger.LogInformation($"Instruction Id: {notification.Id}, Channel: {Channels.PushNotification}, CreatedAt: {DateTime.UtcNow}, Text: {text}");
+
             await Task.Delay(1000, cancellationToken);
         }
     }

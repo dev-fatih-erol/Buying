@@ -40,13 +40,13 @@ namespace Buying.Application.Instructions.Handlers
                 switch (channel)
                 {
                     case Channels.SMS:
-                        await _mediator.Publish(new SendSmsNotification(user.UserName, user.PhoneNumber, request.Amount), cancellationToken);
+                        await _mediator.Publish(new SendSmsNotification(request.Id, user.UserName, user.PhoneNumber, request.Amount), cancellationToken);
                         break;
                     case Channels.Email:
-                        await _mediator.Publish(new SendEmailNotification(user.UserName, user.Email, request.Amount), cancellationToken);
+                        await _mediator.Publish(new SendEmailNotification(request.Id, user.UserName, user.Email, request.Amount), cancellationToken);
                         break;
                     case Channels.PushNotification:
-                        await _mediator.Publish(new SendPushNotification(user.UserName, "Sample_Device_Token", request.Amount), cancellationToken);
+                        await _mediator.Publish(new SendPushNotification(request.Id, user.UserName, "Sample_Device_Token", request.Amount), cancellationToken);
                         break;
                     default:
                         throw new ArgumentException($"Invalid channel: {channel}");
