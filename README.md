@@ -24,3 +24,5 @@ The 5 main tasks of microservice are:
   &nbsp;&nbsp;&nbsp;get /instructions/active
 - Filter and list canceled instructions<br />
   &nbsp;&nbsp;&nbsp;get /instructions/cancelled
+- List notification channels for an instruction<br />
+  &nbsp;&nbsp;&nbsp;get /instructions/instructioId/channels
